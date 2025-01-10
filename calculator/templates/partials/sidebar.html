@@ -1,7 +1,167 @@
-<ul class="list-group bg-dark text-light">
-    <li class="list-group-item active" aria-current="true">An active item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
-  </ul>
+{% load static %}
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <i class="fa-solid fa-calculator fa-lg ps-4"></i>
+    <span class="brand-text font-weight-light ps-1">Calculary</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    {% if 'username' in request.session %}
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="{% static 'img/avatar.jpg' %}" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a href="#" class="d-block text-capitalize">{{ request.session.username }} </a>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="{% url 'index' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+            <i class="nav-icon fas fa-home-alt"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+        <li class="nav-header">Kalkulator</li>
+        <li class="nav-item">
+          <a href="{% url 'aritmatika-index' %}" class="nav-link {% if request.path == '/aritmatika/' %}active{% endif %}">
+            <i class="nav-icon fas fa-square-root-variable"></i>
+            <p>
+              Aritmatika
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-shapes"></i>
+            <p>
+              Bangun Datar
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Persegi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Persegi Panjang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Segitiga</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Lingkaran</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Jajar Genjang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Trapesium</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-cube"></i>
+            <p>
+              Bangun Ruang
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kubus</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Balok</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Silinder</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kerucut</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Prisma</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Limas</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'konversi-index' %}" class="nav-link {% if request.path == '/konversi/' %}active{% endif %}">
+            <i class="nav-icon fas fa-exchange-alt"></i>
+            <p>
+              Konversi
+            </p>
+          </a>
+        </li>
+        <li class="nav-item fixed-bottom border-top border-secondary" style="width: fit-content;">
+          {% if 'username' in request.session %}
+            <a href="{% url 'logout' %}" class="nav-link text-start bg-transparent">
+              <i class="nav-icon fas fa-right-to-bracket"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+          {% else %}
+            <button type="button" class="nav-link border-0 text-start bg-transparent" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="nav-icon fas fa-right-to-bracket"></i>
+              <p>
+                Login
+              </p>
+            </button>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

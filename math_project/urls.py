@@ -15,11 +15,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from calculator.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls), #* Path Admin
 
-    path('', index, name="index"),
+    path('', index, name="index"), #* Path Index
+
+    #* Path Aritmatika
+    path('aritmatika/', aritmatikaIndex, name="aritmatika-index"),
+
+    #* Path Bangun Datar
+    path('bangun-datar/', include([
+        path('', bangunDatarIndex, name="bangunDatar-index"),
+    ])),
+
+    #* Path Bangun Ruang
+    path('bangun-ruang/', include([
+        path('', bangunRuangIndex, name="bangunRuang-index"),
+    ])),
+
+    #* Path Konversi
+    path('konversi/', include([
+        path('', konversiIndex, name="konversi-index"),
+    ])),
+
+    #? Auth
+    path('login/', loginAction, name="login"),
+    path('logout/', logoutAction, name="logout"),
 ]
