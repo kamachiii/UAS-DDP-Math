@@ -34,6 +34,7 @@ urlpatterns = [
     #* Path Bangun Ruang
     path('bangun-ruang/', include([
         path('', bangunRuangIndex, name="bangunRuang-index"),
+        path('kubus', bangunRuangKubus, name="bangunRuang-kubus"),
     ])),
 
     #* Path Konversi

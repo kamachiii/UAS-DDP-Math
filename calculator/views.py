@@ -15,6 +15,31 @@ def bangunDatarIndex(request):
 #* Bangun Ruang
 def bangunRuangIndex(request):
     return render(request, 'views/bangunRuang/index.html')
+def bangunRuangKubus(request):
+    if request.method == 'POST':
+        if 'sisi' in request.POST and request.POST['sisi'] != '':
+            sisi = int(request.POST['sisi'])
+            volume = volume_kubus(sisi)
+            luas_permukaan = luas_permukaan_kubus(sisi)
+            keliling = keliling_kubus(sisi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/kubus?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/kubus.html')
+    return render(request, 'views/bangunRuang/kubus.html', {
+        'sisi': sisi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
+# 1 Rumus Bangun Ruang Kubus
+def volume_kubus(sisi):
+    return sisi ** 3
+def luas_permukaan_kubus(sisi):
+    return 6 * sisi ** 2
+def keliling_kubus(sisi):
+    return 12 * sisi
+# End of Rumus Bangun Ruang Kubus
 
 #* Konversi
 def konversiIndex(request):
