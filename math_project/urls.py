@@ -35,6 +35,7 @@ urlpatterns = [
     path('bangun-ruang/', include([
         path('', bangunRuangIndex, name="bangunRuang-index"),
         path('kubus', bangunRuangKubus, name="bangunRuang-kubus"),
+        path('balok', bangunRuangBalok, name="bangunRuang-balok"),
     ])),
 
     #* Path Konversi

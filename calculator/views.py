@@ -15,6 +15,7 @@ def bangunDatarIndex(request):
 #* Bangun Ruang
 def bangunRuangIndex(request):
     return render(request, 'views/bangunRuang/index.html')
+
 def bangunRuangKubus(request):
     if request.method == 'POST':
         if 'sisi' in request.POST and request.POST['sisi'] != '':
@@ -32,6 +33,27 @@ def bangunRuangKubus(request):
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
+def bangunRuangBalok(request):
+    if request.method == 'POST':
+        if 'panjang' in request.POST and request.POST['panjang'] != '' and 'lebar' in request.POST and request.POST['lebar'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
+            panjang = int(request.POST['panjang'])
+            lebar = int(request.POST['lebar'])
+            tinggi = int(request.POST['tinggi'])
+            volume = volume_balok(panjang, lebar, tinggi)
+            luas_permukaan = luas_permukaan_balok(panjang, lebar, tinggi)
+            keliling = keliling_balok(panjang, lebar, tinggi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/balok?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/balok.html')
+    return render(request, 'views/bangunRuang/balok.html', {
+        'panjang': panjang,
+        'lebar': lebar,
+        'tinggi': tinggi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
 # 1 Rumus Bangun Ruang Kubus
 def volume_kubus(sisi):
     return sisi ** 3
@@ -40,6 +62,15 @@ def luas_permukaan_kubus(sisi):
 def keliling_kubus(sisi):
     return 12 * sisi
 # End of Rumus Bangun Ruang Kubus
+
+# 2 Rumus Bangun Ruang Balok
+def volume_balok(panjang, lebar, tinggi):
+    return panjang * lebar * tinggi
+def luas_permukaan_balok(panjang, lebar, tinggi):
+    return 2 * (panjang * lebar + panjang * tinggi + lebar * tinggi)
+def keliling_balok(panjang, lebar, tinggi):
+    return 4 * (panjang + lebar + tinggi)
+# End of Rumus Bangun Ruang Balok
 
 #* Konversi
 def konversiIndex(request):
