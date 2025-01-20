@@ -157,25 +157,25 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{% url 'bangunRuang-limas-segitiga' %}" class="nav-link {% if request.path == '/bangunRuang-limas-limasSegitiga/' %}active{% endif %}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Limas Segitiga</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{% url 'bangunRuang-limas-segiempat' %}" class="nav-link {% if request.path == '/bangunRuang-limas-limasSegiempat/' %}active{% endif %}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Limas Segiempat</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{% url 'bangunRuang-limas-segilima' %}" class="nav-link {% if request.path == '/bangunRuang-limas-limasSegilima/' %}active{% endif %}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Limas Segilima</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{% url 'bangunRuang-limas-segienam' %}" class="nav-link {% if request.path == '/bangunRuang-limas-limasSegienam/' %}active{% endif %}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Limas Segienam</p>
                   </a>
@@ -183,13 +183,13 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunRuang-kerucut' %}" class="nav-link {% if request.path == '/bangunRuang-kerucut/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kerucut</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunRuang-bola' %}" class="nav-link {% if request.path == '/bangunRuang-bola/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Bola</p>
               </a>
@@ -201,8 +201,29 @@
             <i class="nav-icon fas fa-exchange-alt"></i>
             <p>
               Konversi
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'konversi-suhu' %}" class="nav-link {% if request.path == '/konversi/suhu/' %}active{% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Suhu</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'konversi-panjang' %}" class="nav-link {% if request.path == '/konversi/panjang/' %}active{% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Panjang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'konversi-berat' %}" class="nav-link {% if request.path == '/konversi/berat/' %}active{% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Berat</p>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item fixed-bottom border-top border-secondary" style="width: fit-content;">
           {% if 'username' in request.session %}

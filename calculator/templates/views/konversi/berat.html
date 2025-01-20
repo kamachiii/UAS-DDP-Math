@@ -1,0 +1,233 @@
+{% extends "main.html" %}
+{% block title %}Kalkulator | Konversi Berat{% endblock %}
+{% block contentHeader %}Konversi Berat{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Konversi Berat</h3>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'konversi-berat' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="inputBerat">Berat</label>
+                        <input type="number" name="berat" id="inputBerat" class="form-control" placeholder="Masukkan berat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSatuan">Satuan</label>
+                        <select name="from" id="inputSatuan" class="form-control" required>
+                            <option value="" hidden>-- Pilih --</option>
+                            <option value="ton">Ton</option>
+                            <option value="kwintal">Kwintal</option>
+                            <option value="kilogram">Kilogram</option>
+                            <option value="hektogram">Hektogram</option>
+                            <option value="dekagram">Dekagram</option>
+                            <option value="gram">Gram</option>
+                            <option value="desigram">Desigram</option>
+                            <option value="centigram">Centigram</option>
+                            <option value="miligram">Miligram</option>
+                            <option value="pound">Pound</option>
+                            <option value="ons">Ons</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="outputSatuan">Konversi ke</label>
+                        <select name="to" id="outputSatuan" class="form-control" disabled required>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Konversi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Hasil Konversi</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    {% if hasil %}
+                        Hasil konversi berat dari {{ berat }} {{ from }} ke {{ to }} adalah {{ hasil }}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+    $(document).ready(function() {
+        $('#inputSatuan').change(function() {
+            $('#outputSatuan').removeAttr('disabled');
+            let options = '';
+            switch ($(this).val()) {
+            case 'ton':
+                options = `
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'kwintal':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'kilogram':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'hektogram':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'dekagram':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'gram':
+                options = `
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                `;
+                break;
+            case 'desigram':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'centigram':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                    `;
+                    break;
+            case 'miligram':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="pound">Pound</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'pound':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="ons">Ons</option>
+                `;
+                break;
+            case 'ons':
+                options = `
+                    <option value="ton">Ton</option>
+                    <option value="kwintal">Kwintal</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="hektogram">Hektogram</option>
+                    <option value="dekagram">Dekagram</option>
+                    <option value="gram">Gram</option>
+                    <option value="desigram">Desigram</option>
+                    <option value="centigram">Centigram</option>
+                    <option value="miligram">Miligram</option>
+                    <option value="pound">Pound</option>
+                `;
+                break;
+            }
+            $('#outputSatuan').html(options);
+        });
+    });
+</script>
+
+{% endblock %}

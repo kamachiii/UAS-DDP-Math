@@ -163,6 +163,124 @@ def bangunRuangTabung(request):
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
+
+def bangunRuangLimasSegitiga(request):
+    if request.method == 'POST':
+        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
+            alas = int(request.POST['alas'])
+            tinggi = int(request.POST['tinggi'])
+            volume = volume_limas_segitiga(alas, tinggi)
+            luas_permukaan = luas_permukaan_limas_segitiga(alas, tinggi)
+            keliling = keliling_limas_segitiga(alas, tinggi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segitiga?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/limas/limasSegitiga.html')
+    return render(request, 'views/bangunRuang/limas/limasSegitiga.html', {
+        'alas': alas,
+        'tinggi': tinggi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
+    
+def bangunRuangLimasSegiempat(request):
+    if request.method == 'POST':
+        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
+            alas = int(request.POST['alas'])
+            tinggi = int(request.POST['tinggi'])
+            volume = volume_limas_segiempat(alas, tinggi)
+            luas_permukaan = luas_permukaan_limas_segiempat(alas, tinggi)
+            keliling = keliling_limas_segiempat(alas, tinggi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segiempat?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/limas/limasSegiempat.html')
+    return render(request, 'views/bangunRuang/limas/limasSegiempat.html', {
+        'alas': alas,
+        'tinggi': tinggi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
+    
+def bangunRuangLimasSegilima(request):
+    if request.method == 'POST':
+        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
+            alas = int(request.POST['alas'])
+            tinggi = int(request.POST['tinggi'])
+            volume = volume_limas_segilima(alas, tinggi)
+            luas_permukaan = luas_permukaan_limas_segilima(alas, tinggi)
+            keliling = keliling_limas_segilima(alas, tinggi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segilima?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/limas/limasSegilima.html')
+    return render(request, 'views/bangunRuang/limas/limasSegilima.html', {
+        'alas': alas,
+        'tinggi': tinggi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
+    
+def bangunRuangLimasSegienam(request):
+    if request.method == 'POST':
+        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
+            alas = int(request.POST['alas'])
+            tinggi = int(request.POST['tinggi'])
+            volume = volume_limas_segienam(alas, tinggi)
+            luas_permukaan = luas_permukaan_limas_segienam(alas, tinggi)
+            keliling = keliling_limas_segienam(alas, tinggi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segiempat?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/limas/limasSegienam.html')
+    return render(request, 'views/bangunRuang/limas/limasSegienam.html', {
+        'alas': alas,
+        'tinggi': tinggi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
+    
+def bangunRuangKerucut(request):
+    if request.method == 'POST':
+        if 'jari_jari' in request.POST and request.POST['jari_jari'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
+            jari_jari = int(request.POST['jari_jari'])
+            tinggi = int(request.POST['tinggi'])
+            volume = volume_kerucut(jari_jari, tinggi)
+            luas_permukaan = luas_permukaan_kerucut(jari_jari, tinggi)
+            keliling = keliling_kerucut(jari_jari, tinggi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/kerucut?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/kerucut.html')
+    return render(request, 'views/bangunRuang/kerucut.html', {
+        'jari_jari': jari_jari,
+        'tinggi': tinggi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
+    
+def bangunRuangBola(request):
+    if request.method == 'POST':
+        if 'jari_jari' in request.POST and request.POST['jari_jari'] != '':
+            jari_jari = int(request.POST['jari_jari'])
+            volume = volume_bola(jari_jari)
+            luas_permukaan = luas_permukaan_bola(jari_jari)
+            keliling = keliling_bola(jari_jari)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/bola?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-ruang/bola.html')
+    return render(request, 'views/bangunRuang/bola.html', {
+        'jari_jari': jari_jari,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+        'keliling': keliling
+    })
       
 # 1 Rumus Bangun Ruang Kubus
 def volume_kubus(sisi):
@@ -280,6 +398,115 @@ def keliling_bola(jari_jari):
 #* Konversi
 def konversiIndex(request):
     return render(request, 'views/konversi/index.html')
+
+def konversiSuhu(request):
+    if request.method == 'POST':
+        if 'suhu' in request.POST and request.POST['suhu'] != '' and 'from' in request.POST and request.POST['from'] != '' and 'to' in request.POST and request.POST['to'] != '':
+            suhu = float(request.POST['suhu'])
+            from_unit = request.POST['from']
+            to_unit = request.POST['to']
+            hasil = konversi_suhu(suhu, from_unit, to_unit)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/konversi/suhu?message=Please fill the form'))
+    else:
+        return render(request, 'views/konversi/suhu.html')
+    return render(request, 'views/konversi/suhu.html', {
+        'suhu': suhu,
+        'from': from_unit,
+        'to': to_unit,
+        'hasil': hasil
+    })
+
+def konversiPanjang(request):
+    if request.method == 'POST':
+        if 'panjang' in request.POST and request.POST['panjang'] != '' and 'from' in request.POST and request.POST['from'] != '' and 'to' in request.POST and request.POST['to'] != '':
+            panjang = float(request.POST['panjang'])
+            from_unit = request.POST['from']
+            to_unit = request.POST['to']
+            hasil = konversi_panjang(panjang, from_unit, to_unit)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/konversi/panjang?message=Please fill the form'))
+    else:
+        return render(request, 'views/konversi/panjang.html')
+    return render(request, 'views/konversi/panjang.html', {
+        'panjang': panjang,
+        'from': from_unit,
+        'to': to_unit,
+        'hasil': hasil
+    })
+
+def konversiBerat(request):
+    if request.method == 'POST':
+        if 'berat' in request.POST and request.POST['berat'] != '' and 'from' in request.POST and request.POST['from'] != '' and 'to' in request.POST and request.POST['to'] != '':
+            berat = float(request.POST['berat'])
+            from_unit = request.POST['from']
+            to_unit = request.POST['to']
+            hasil = konversi_berat(berat, from_unit, to_unit)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/konversi/berat?message=Please fill the form'))
+    else:
+        return render(request, 'views/konversi/berat.html')
+    return render(request, 'views/konversi/berat.html', {
+        'berat': berat,
+        'from': from_unit,
+        'to': to_unit,
+        'hasil': hasil
+    })
+
+#* Fungsi Konversi
+def konversi_suhu(suhu, from_unit, to_unit):
+    if from_unit == 'celsius':
+        if to_unit == 'fahrenheit':
+            return (suhu * 9/5) + 32
+        elif to_unit == 'kelvin':
+            return suhu + 273.15
+    elif from_unit == 'fahrenheit':
+        if to_unit == 'celsius':
+            return (suhu - 32) * 5/9
+        elif to_unit == 'kelvin':
+            return (suhu - 32) * 5/9 + 273.15
+    elif from_unit == 'kelvin':
+        if to_unit == 'celsius':
+            return suhu - 273.15
+        elif to_unit == 'fahrenheit':
+            return (suhu - 273.15) * 9/5 + 32
+    return suhu
+
+def konversi_panjang(panjang, from_unit, to_unit):
+    conversion_factors = {
+        'kilometer': 1000,
+        'hektometer': 100,
+        'dekameter': 10,
+        'meter': 1,
+        'desimeter': 0.1,
+        'centimeter': 0.01,
+        'millimeter': 0.001,
+        'mil': 1609.34,
+        'yard': 0.9144,
+        'kaki': 0.3048,
+        'inci': 0.0254
+    }
+    if from_unit in conversion_factors and to_unit in conversion_factors:
+        return panjang * conversion_factors[from_unit] / conversion_factors[to_unit]
+    return panjang
+
+def konversi_berat(berat, from_unit, to_unit):
+    conversion_factors = {
+        'ton': 1000,
+        'kwintal': 100,
+        'kilogram': 1,
+        'hektogram': 0.1,
+        'dekagram': 0.01,
+        'gram': 0.001,
+        'desigram': 0.0001,
+        'milligram': 0.000001,
+        'pound': 0.453592,
+        'ons': 0.0283495
+    }
+    if from_unit in conversion_factors and to_unit in conversion_factors:
+        return berat * conversion_factors[from_unit] / conversion_factors[to_unit]
+    return berat
+
 
 #? Auth
 def loginAction(request):

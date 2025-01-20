@@ -1,0 +1,211 @@
+{% extends "main.html" %}
+{% block title %}Kalkulator | Konversi Panjang{% endblock %}
+{% block contentHeader %}Konversi Panjang{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Konversi Panjang</h3>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'konversi-panjang' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="inputPanjang">Panjang</label>
+                        <input type="number" name="panjang" id="inputPanjang" class="form-control" placeholder="Masukkan panjang" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSatuan">Satuan</label>
+                        <select name="from" id="inputSatuan" class="form-control" required>
+                            <option value="" hidden>-- Pilih --</option>
+                            <option value="kilometer">Kilometer</option>
+                            <option value="hektometer">Hektometer</option>
+                            <option value="dekameter">Dekameter</option>
+                            <option value="meter">Meter</option>
+                            <option value="desimeter">Desimeter</option>
+                            <option value="centimeter">Centimeter</option>
+                            <option value="milimeter">Milimeter</option>
+                            <option value="mil">Mil</option>
+                            <option value="yard">Yard</option>
+                            <option value="kaki">Kaki</option>
+                            <option value="inci">Inci</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outputSatuan">Konversi ke</label>
+                        <select name="to" id="outputSatuan" class="form-control" disabled required>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Konversi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Hasil Konversi</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    {% if hasil %}
+                        Hasil konversi panjang dari {{ panjang }} {{ from }} ke {{ to }} adalah {{ hasil }}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $('#inputSatuan').change(function() {
+            $('#outputSatuan').removeAttr('disabled');
+            if ($(this).val() == 'kilometer') {
+                $('#outputSatuan').html(`
+                    <option value="hektometer">Hektometer</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="milimeter">Milimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'hektometer') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="milimeter">Milimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'dekameter') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektometer">Hektometer</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="milimeter">Milimeter</option>
+                `);
+            } else if ($(this).val() == 'meter') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektometer">Hektometer</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="milimeter">Milimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'desimeter') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektometer">Hektometer</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="milimeter">Milimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'centimeter') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektometer">Hektometer</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="milimeter">Milimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'milimeter') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektameter">Hektameter</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'mil') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektameter">Hektameter</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'yard') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektameter">Hektameter</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'kaki') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektameter">Hektameter</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="inci">Inci</option>
+                `);
+            } else if ($(this).val() == 'inci') {
+                $('#outputSatuan').html(`
+                    <option value="kilometer">Kilometer</option>
+                    <option value="hektameter">Hektameter</option>
+                    <option value="dekameter">Dekameter</option>
+                    <option value="meter">Meter</option>
+                    <option value="desimeter">Desimeter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="mil">Mil</option>
+                    <option value="yard">Yard</option>
+                    <option value="kaki">Kaki</option>
+                `);
+            }
+        });
+    });
+</script>
+
+{% endblock %}
