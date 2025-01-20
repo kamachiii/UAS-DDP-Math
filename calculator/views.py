@@ -6,6 +6,19 @@ def index(request):
 
 #* Aritmatika
 def aritmatikaIndex(request):
+    if request.method == 'POST':
+        num1 = request.POST.get('num1')
+        num2 = request.POST.get('num2')
+        operator = request.POST.get('operator')
+        if operator == '+':
+            hasil = int(num1) + int(num2)
+        elif operator == '-':
+            hasil = int(num1) - int(num2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        elif operator == 'x':
+            hasil = int(num1) * int(num2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        elif operator == ':':
+            hasil = int(num1) / int(num2)
+        return render(request, 'views/aritmatika/index.html', {"num1" : num1, "num2" : num2, "operator" : operator, "hasil" : hasil})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     return render(request, 'views/aritmatika/index.html')
 
 #* Bangun Datar
