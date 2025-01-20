@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% block title %}Kalkulator | Konversi Suhu{% endblock %}
+{% block contentHeader %}Konversi Suhu{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Konversi Suhu</h3>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'konversi-suhu' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="inputSuhu">Suhu</label>
+                        <input type="number" name="suhu" id="inputSuhu" class="form-control" placeholder="Masukkan suhu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSatuan">Satuan</label>
+                        <select name="from" id="inputSatuan" class="form-control" required>
+                            <option value="" hidden>-- Pilih --</option>
+                            <option value="celsius">Celsius</option>
+                            <option value="fahrenheit">Fahrenheit</option>
+                            <option value="kelvin">Kelvin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="outputSatuan">Konversi ke</label>
+                        <select name="to" id="outputSatuan" class="form-control" required disabled>
+                            <option value="" hidden>-- Pilih --</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Konversi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Hasil Konversi</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    {% if hasil %}
+                        Hasil konversi suhu dari {{ suhu }} {{ from }} ke {{ to }} adalah {{ hasil }}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $('#inputSatuan').change(function() {
+            $('#outputSatuan').empty();
+            $('#outputSatuan').removeAttr('disabled');
+            if ($(this).val() != 'celsius') {
+                $('#outputSatuan').append('<option value="celsius">Celsius</option>');
+            }
+            if ($(this).val() != 'fahrenheit') {
+                $('#outputSatuan').append('<option value="fahrenheit">Fahrenheit</option>');
+            }
+            if ($(this).val() != 'kelvin') {
+                $('#outputSatuan').append('<option value="kelvin">Kelvin</option>');
+            }
+        });
+    });
+</script>
+
+{% endblock %}

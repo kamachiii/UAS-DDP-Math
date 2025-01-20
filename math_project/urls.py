@@ -32,13 +32,29 @@ urlpatterns = [
     ])),
 
     #* Path Bangun Ruang
-    path('bangun-ruang/', include([
+    path('Bangun Ruang /', include([
         path('', bangunRuangIndex, name="bangunRuang-index"),
+        path('Kubus', bangunRuangKubus, name="bangunRuang-kubus"),
+        path('Balok', bangunRuangBalok, name="bangunRuang-balok"),
+        path('Prisma Segitiga', bangunRuangPrismaSegitiga, name="bangunRuang-prisma-segitiga"),
+        path('Prisma Segiempat', bangunRuangPrismaSegiempat, name="bangunRuang-prisma-segiempat"),
+        path('Prisma Segilima', bangunRuangPrismaSegilima, name="bangunRuang-prisma-segilima"),
+        path('Prisma Segienam', bangunRuangPrismaSegienam, name="bangunRuang-prisma-segienam"),
+        path('Tabung', bangunRuangTabung, name="bangunRuang-tabung"),
+        path('Limas Segitiga', bangunRuangLimasSegitiga, name="bangunRuang-limas-segitiga"),
+        path('Limas Segiempat', bangunRuangLimasSegiempat, name="bangunRuang-limas-segiempat"),
+        path('Limas Segilima', bangunRuangLimasSegilima, name="bangunRuang-limas-segilima"),
+        path('Limas Segienam', bangunRuangLimasSegienam, name="bangunRuang-limas-segienam"),
+        path('Kerucut', bangunRuangKerucut, name="bangunRuang-kerucut"),
+        path('Bola', bangunRuangBola, name="bangunRuang-bola"),
     ])),
 
     #* Path Konversi
     path('konversi/', include([
         path('', konversiIndex, name="konversi-index"),
+        path('suhu', konversiSuhu, name="konversi-suhu"),
+        path('berat', konversiBerat, name="konversi-berat"),
+        path('panjang', konversiPanjang, name="konversi-panjang"),
     ])),
 
     #? Auth
