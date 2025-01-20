@@ -36,6 +36,11 @@ urlpatterns = [
         path('', bangunRuangIndex, name="bangunRuang-index"),
         path('kubus', bangunRuangKubus, name="bangunRuang-kubus"),
         path('balok', bangunRuangBalok, name="bangunRuang-balok"),
+        path('bangun-ruang/prisma/prismaSegitiga', bangunRuangPrismaSegitiga, name="bangunRuang-prisma-segitiga"),
+        path('bangun-ruang/prisma/prismaSegiempat', bangunRuangPrismaSegiempat, name="bangunRuang-prisma-segiempat"),
+        path('bangun-ruang/prisma/prismaSegilima', bangunRuangPrismaSegilima, name="bangunRuang-prisma-segilima"),
+        path('bangun-ruang/prisma/prismaSegienam', bangunRuangPrismaSegienam, name="bangunRuang-prisma-segienam"),
+        path('tabung', bangunRuangTabung, name="bangunRuang-tabung"),
     ])),
 
     #* Path Konversi

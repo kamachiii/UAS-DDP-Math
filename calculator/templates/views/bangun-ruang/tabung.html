@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block title %}Kalkulator | Bangun Ruang | Tabung {% endblock %}
+{% block contentHeader %}Tabung{% endblock %}
+
+{% block content %}
+<select class="form-select" aria-label="Default select example">
+    <option selected>Pilih Rumus</option>
+    <option value="1">Volume</option>
+    <option value="2">Luas Permukaan</option>
+    <option value="3">Keliling</option>
+</select>
+<br>
+<div class="form-floating">
+    <input class="form-control" placeholder="Leave a comment here" id="input"></input>
+    <label for="input">Masukkan Panjang</label>
+</div>
+<br>
+<div class="form-floating">
+    <input class="form-control" placeholder="Leave a comment here" id="input"></input>
+    <label for="input">Masukkan lebar</label>
+</div>
+<br>
+<div class="form-floating">
+    <input class="form-control" placeholder="Leave a comment here" id="input"></input>
+    <label for="input">Masukkan Tinggi</label>
+</div>
+<br>
+<button type="button" class="btn btn-outline-primary">Hitung</button>
+{% endblock %}
