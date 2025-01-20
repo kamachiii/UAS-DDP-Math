@@ -41,6 +41,9 @@ urlpatterns = [
     #* Path Konversi
     path('konversi/', include([
         path('', konversiIndex, name="konversi-index"),
+        path('suhu', konversiSuhu, name="konversi-suhu"),
+        path('berat', konversiBerat, name="konversi-berat"),
+        path('panjang', konversiPanjang, name="konversi-panjang"),
     ])),
 
     #? Auth

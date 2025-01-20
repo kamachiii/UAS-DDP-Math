@@ -201,8 +201,29 @@
             <i class="nav-icon fas fa-exchange-alt"></i>
             <p>
               Konversi
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'konversi-suhu' %}" class="nav-link {% if request.path == '/konversi/suhu/' %}active{% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Suhu</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'konversi-panjang' %}" class="nav-link {% if request.path == '/konversi/panjang/' %}active{% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Panjang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'konversi-berat' %}" class="nav-link {% if request.path == '/konversi/berat/' %}active{% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Berat</p>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item fixed-bottom border-top border-secondary" style="width: fit-content;">
           {% if 'username' in request.session %}
