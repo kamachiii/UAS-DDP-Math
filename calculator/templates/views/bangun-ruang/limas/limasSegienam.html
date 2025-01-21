@@ -1,29 +1,79 @@
 {% extends "main.html" %}
-{% block title %}Kalkulator | Bangun Ruang | Limas Segienam{% endblock %}
-{% block contentHeader %}Limas Segienam{% endblock %}
+{% block title %}Kalkulator | Bangun Ruang | Balok{% endblock %}
+{% block contentHeader %}Balok{% endblock %}
 
 {% block content %}
-<select class="form-select" aria-label="Default select example">
-    <option selected>Pilih Rumus</option>
-    <option value="1">Volume</option>
-    <option value="2">Luas Permukaan</option>
-    <option value="3">Keliling</option>
-</select>
-<br>
-<div class="form-floating">
-    <input class="form-control" placeholder="Leave a comment here" id="input"></input>
-    <label for="input">Masukkan Panjang</label>
-</div>
-<br>
-<div class="form-floating">
-    <input class="form-control" placeholder="Leave a comment here" id="input"></input>
-    <label for="input">Masukkan lebar</label>
-</div>
-<br>
-<div class="form-floating">
-    <input class="form-control" placeholder="Leave a comment here" id="input"></input>
-    <label for="input">Masukkan Tinggi</label>
-</div>
-<br>
-<button type="button" class="btn btn-outline-primary">Hitung</button>
+<form action="" method="post">
+    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required>
+        <option value="" hidden selected>Pilih Rumus</option>
+        <option value="1">Volume</option>
+        <option value="2">Luas Permukaan</option>
+        <option value="3">Keliling</option>
+    </select>
+    <div id="rumusVolume" style="display: none;">
+        *Tempat rumus volume
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <label for="input">Masukkan Alas</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <label for="input">Masukkan Tinggi</label>
+        </div>
+    </div>
+    <div id="rumusLuasPermukaan" style="display: none;">
+        *Tempat rumus luas permukaan
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <label for="input">Masukkan Alas</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <label for="input">Masukkan Tinggi</label>
+        </div>
+    </div>
+    <div id="rumusKeliling" style="display: none;">
+        *Tempat rumus keliling
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <label for="input">Masukkan Alas</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <label for="input">Masukkan Tinggi</label>
+        </div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-outline-primary">Hitung</button>
+</form>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $("#pilihRumus").change(function() {
+            var rumus = $("#pilihRumus").val();
+            if (rumus == 1) {
+                $("#rumusVolume").show();
+                $("#rumusLuasPermukaan").hide();
+                $("#rumusKeliling").hide();
+            } else if (rumus == 2) {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").show();
+                $("#rumusKeliling").hide();
+            } else if (rumus == 3) {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").hide();
+                $("#rumusKeliling").show();
+            } else {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").hide();
+                $("#rumusKeliling").hide();
+            }
+        });
+    });
+</script>
 {% endblock %}
