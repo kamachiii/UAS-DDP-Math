@@ -1,10 +1,49 @@
 {% extends "main.html" %}
-{% block title %}Kalkulator | Bangun Datar{% endblock %}
-{% block contentHeader %}Bangun Datar{% endblock %}
+{% block title %}Kalkulator | Bangun Ruang | Lingkaran{% endblock %}
+{% block contentHeader %}Lingkaran{% endblock %}
 
 {% block content %}
-<div class="form-floating">
-    <input class="form-control" placeholder="Leave a comment here" id="input"></input>
-    <label for="input">Masukkan Panjang</label>
-</div>
+<form action="" method="post">
+    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required>
+        <option value="" hidden selected>Pilih Rumus</option>
+        <option value="1">Luas</option>
+        <option value="2">Keliling</option>
+    </select>
+    <div id="rumusVolume" style="display: none;">
+        *Tempat rumus Luas
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <label for="input">Masukkan jari-jari</label>
+        </div>
+    </div>
+    <div id="rumusLuasPermukaan" style="display: none;">
+        *Tempat rumus Keliling
+        <div class="form-floating">
+            <input class="form-control" placeholder="rumus Luas Permukaan" id="input" name="sisiLuasPermukaan"></input>
+            <label for="input">Masukkan jari-jari</label>
+        </div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-outline-primary">Hitung</button>
+</form>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $("#pilihRumus").change(function() {
+            var rumus = $("#pilihRumus").val();
+            if (rumus == 1) {
+                $("#rumusVolume").show();
+                $("#rumusLuasPermukaan").hide();
+            } else if (rumus == 2) {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").show();
+            } else {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").hide();
+            }
+        });
+    });
+</script>
 {% endblock %}
