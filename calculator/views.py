@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+import math
 
 def index(request):
     return render(request, 'views/index.html')
@@ -11,6 +12,29 @@ def aritmatikaIndex(request):
 #* Bangun Datar
 def bangunDatarIndex(request):
     return render(request, 'views/bangunDatar/index.html')
+def luas_persegi(sisi):
+    return sisi * sisi
+
+def keliling_persegi(sisi):
+    return 4 * sisi
+
+def luas_persegi_panjang(panjang, lebar):
+    return panjang * lebar
+
+def keliling_persegi_panjang(panjang, lebar):
+    return 2 * (panjang + lebar)
+
+def luas_segitiga(alas, tinggi):
+    return 0.5 * alas * tinggi
+
+def keliling_segitiga(sisi1, sisi2, sisi3):
+    return sisi1 + sisi2 + sisi3
+
+def luas_lingkaran(jari_jari):
+    return math.pi * jari_jari * jari_jari
+
+def keliling_lingkaran(jari_jari):
+    return 2 * math.pi * jari_jari
 
 #* Bangun Ruang
 def bangunRuangIndex(request):
