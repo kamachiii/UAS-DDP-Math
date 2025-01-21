@@ -17,3 +17,31 @@
 <br>
 <button type="button" class="btn btn-outline-primary">Hitung</button>
 {% endblock %}
+
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $("#pilihRumus").change(function() {
+            var rumus = $("#pilihRumus").val();
+            if (rumus == 1) {
+                $("#rumusVolume").show();
+                $("#rumusLuasPermukaan").hide();
+                $("#rumusKeliling").hide();
+            } else if (rumus == 2) {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").show();
+                $("#rumusKeliling").hide();
+            } else if (rumus == 3) {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").hide();
+                $("#rumusKeliling").show();
+            } else {
+                $("#rumusVolume").hide();
+                $("#rumusLuasPermukaan").hide();
+                $("#rumusKeliling").hide();
+            }
+        });
+    });
+</script>
+{% endblock %}
