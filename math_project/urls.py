@@ -32,6 +32,9 @@ urlpatterns = [
         path('persegi', bangunDatarPersegi, name="bangunDatar-persegi"),
         path('persegi-panjang', bangunDatarPersegiPanjang, name="bangunDatar-persegi-panjang"),
         path('segitiga', bangunDatarSegitiga, name="bangunDatar-segitiga"),
+        path('lingkaran', bangunDatarLingkaran, name="bangunDatar-lingkaran"),
+        path('jajar-genjang', bangunDatarJajarGenjang, name="bangunDatar-jajar-genjang"),
+        path('trapesium', bangunDatarTrapesium, name="bangunDatar-trapesium"),
     ])),
 
     #* Path Bangun Ruang
