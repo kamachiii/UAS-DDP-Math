@@ -29,6 +29,9 @@ urlpatterns = [
     #* Path Bangun Datar
     path('bangun-datar/', include([
         path('', bangunDatarIndex, name="bangunDatar-index"),
+        path('persegi', bangunDatarPersegi, name="bangunDatar-persegi"),
+        path('persegi-panjang', bangunDatarPersegiPanjang, name="bangunDatar-persegi-panjang"),
+        path('segitiga', bangunDatarSegitiga, name="bangunDatar-segitiga"),
     ])),
 
     #* Path Bangun Ruang

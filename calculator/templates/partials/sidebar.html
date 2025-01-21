@@ -52,19 +52,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunDatar-persegi' %}" class="nav-link {% if request.path == '/bangunDatar-persegi/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Persegi</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunDatar-persegi-panjang' %}" class="nav-link {% if request.path == '/bangunDatar-persegi-panjang/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Persegi Panjang</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunDatar-segitiga' %}" class="nav-link {% if request.path == '/bangunDatar-segitiga/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Segitiga</p>
               </a>
