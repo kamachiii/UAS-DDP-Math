@@ -5,5 +5,56 @@
 {% block content %}
 
 Aritmatika
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white text-center">
+                <h3>Calculator</h3>
+            </div>
+            <div class="card-body px-1">
+                <form action="#" method="post" class="row justify-align-between align-items-center">
+                    {% csrf_token %}
+                    <div class="form-floating col-md-5">
+                        <input type="Number" class="form-control" id="floatingInput" placeholder="angka 1" name="num1">
+                        <label for="floatingInput" class="">Number 1</label>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select h-75" name="operator" id="ror">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="x">x</option>
+                            <option value=":">:</option>
+                        </select>
+                    </div>
+                    <div class="form-floating col-md-5">
+                        <input type="Number" class="form-control" id="floatingInput" placeholder="angka 2" name="num2">
+                        <label for="floatingInput">Number 2</label>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <button type="submit" class="btn btn-primary w-100">Calculate</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white text-center">
+                <h3>Hasil</h3>
+            </div>
+            <div class="card-body px-1">
+                {% if hasil %}
+                <h5 class="card-title">{{num1}} {{operator}} {{num2}}= {{hasil}}</h5>
+                {% else %}
+                <h5 class="card-title">Hasil : {{hasil}}</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
