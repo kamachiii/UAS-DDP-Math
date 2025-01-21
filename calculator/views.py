@@ -100,12 +100,6 @@ def luas_segitiga(alas, tinggi):
 def keliling_segitiga(sisi1, sisi2, sisi3):
     return sisi1 + sisi2 + sisi3
 
-def luas_lingkaran(jari_jari):
-    return math.pi * jari_jari * jari_jari
-
-def keliling_lingkaran(jari_jari):
-    return 2 * math.pi * jari_jari
-
 #* Bangun Ruang
 def bangunRuangIndex(request):
     return render(request, 'views/bangunRuang/index.html')
