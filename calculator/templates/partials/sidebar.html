@@ -70,19 +70,19 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunDatar-lingkaran' %}" class="nav-link {% if request.path == '/bangunDatar-lingkaran/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Lingkaran</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunDatar-jajar-genjang' %}" class="nav-link {% if request.path == '/bangunDatar-jajar-genjang/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Jajar Genjang</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{% url 'bangunDatar-trapesium' %}" class="nav-link {% if request.path == '/bangunDatar-trapesium/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Trapesium</p>
               </a>

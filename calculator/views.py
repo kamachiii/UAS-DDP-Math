@@ -100,6 +100,80 @@ def luas_segitiga(alas, tinggi):
 def keliling_segitiga(sisi1, sisi2, sisi3):
     return sisi1 + sisi2 + sisi3
 
+def bangunDatarLingkaran(request):
+    if request.method == 'POST':
+        if 'jari_jari' in request.POST and request.POST['jari_jari'] != '':
+            jari_jari = int(request.POST['jari_jari'])
+            luas = luas_lingkaran(jari_jari)
+            keliling = keliling_lingkaran(jari_jari)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/lingkaran?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-datar/lingkaran.html')
+    return render(request, 'views/bangunDatar/lingkaran.html', {
+        'jari_jari': jari_jari,
+        'luas': luas,
+        'keliling': keliling
+    })
+def luas_lingkaran(jari_jari):
+    return math.pi * jari_jari ** 2
+def keliling_lingkaran(jari_jari):
+    return 2 * math.pi * jari_jari
+
+def bangunDatarJajarGenjang(request):
+    if request.method == 'POST':
+        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '' and 'sisi1' in request.POST and request.POST['sisi1'] != '' and 'sisi2' in request.POST and request.POST['sisi2'] != '':
+            alas = int(request.POST['alas'])
+            tinggi = int(request.POST['tinggi'])
+            sisi1 = int(request.POST['sisi1'])
+            sisi2 = int(request.POST['sisi2'])
+            luas = luas_jajar_genjang(alas, tinggi)
+            keliling = keliling_jajar_genjang(sisi1, sisi2)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/jajar-genjang?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-datar/jajarGenjang.html')
+    return render(request, 'views/bangunDatar/jajarGenjang.html', {
+        'alas': alas,
+        'tinggi': tinggi,
+        'sisi1': sisi1,
+        'sisi2': sisi2,
+        'luas': luas,
+        'keliling': keliling
+    })
+def luas_jajar_genjang(alas, tinggi):
+    return alas * tinggi
+def keliling_jajar_genjang(sisi1, sisi2):
+    return 2 * (sisi1 + sisi2)
+
+def bangunDatarTrapesium(request):
+    if request.method == 'POST':
+        if 'alas1' in request.POST and request.POST['alas1'] != '' and 'alas2' in request.POST and request.POST['alas2'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '' and 'sisi1' in request.POST and request.POST['sisi1'] != '' and 'sisi2' in request.POST and request.POST['sisi2'] != '':
+            alas1 = int(request.POST['alas1'])
+            alas2 = int(request.POST['alas2'])
+            tinggi = int(request.POST['tinggi'])
+            sisi1 = int(request.POST['sisi1'])
+            sisi2 = int(request.POST['sisi2'])
+            luas = luas_trapesium(alas1, alas2, tinggi)
+            keliling = keliling_trapesium(sisi1, sisi2, alas1, alas2)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/trapesium?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-datar/trapesium.html')
+    return render(request, 'views/bangunDatar/trapesium.html', {
+        'alas1': alas1,
+        'alas2': alas2,
+        'tinggi': tinggi,
+        'sisi1': sisi1,
+        'sisi2': sisi2,
+        'luas': luas,
+        'keliling': keliling
+    })
+def luas_trapesium(alas1, alas2, tinggi):
+    return 0.5 * (alas1 + alas2) * tinggi
+def keliling_trapesium(sisi1, sisi2, alas1, alas2):
+    return sisi1 + sisi2 + alas1 + alas2
+
 #* Bangun Ruang
 def bangunRuangIndex(request):
     return render(request, 'views/bangunRuang/index.html')
