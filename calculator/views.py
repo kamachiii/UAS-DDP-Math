@@ -26,6 +26,80 @@ def aritmatikaIndex(request):
 def bangunDatarIndex(request):
     return render(request, 'views/bangunDatar/index.html')
 
+def bangunDatarPersegi(request):
+    if request.method == 'POST':
+        if 'sisi' in request.POST and request.POST['sisi'] != '':
+            sisi = int(request.POST['sisi'])
+            luas = luas_persegi(sisi)
+            keliling = keliling_persegi(sisi)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/persegi?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-datar/persegi.html')
+    return render(request, 'views/bangunDatar/persegi.html', {
+        'sisi': sisi,
+        'luas': luas,
+        'keliling': keliling
+    })
+
+def luas_persegi(sisi):
+    return sisi * sisi
+
+def keliling_persegi(sisi): 
+    return 4 * sisi
+
+def bangunDatarPersegiPanjang(request):
+    if request.method == 'POST':
+        if 'panjang' in request.POST and request.POST['panjang'] != '' and 'lebar' in request.POST and request.POST['lebar'] != '':
+            panjang = int(request.POST['panjang'])
+            lebar = int(request.POST['lebar'])
+            luas = luas_persegi_panjang(panjang, lebar)
+            keliling = keliling_persegi_panjang(panjang, lebar)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/persegi-panjang?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-datar/persegiPanjang.html')
+    return render(request, 'views/bangunDatar/persegiPanjang.html', {
+        'panjang': panjang,
+        'lebar': lebar,
+        'luas': luas,
+        'keliling': keliling
+    })
+
+def luas_persegi_panjang(panjang, lebar):
+    return panjang * lebar
+def keliling_persegi_panjang(panjang, lebar):
+    return 2 * (panjang + lebar)
+
+def bangunDatarSegitiga(request):
+    if request.method == 'POST':
+        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '' and 'sisi1' in request.POST and request.POST['sisi1'] != '' and 'sisi2' in request.POST and request.POST['sisi2'] != '' and 'sisi3' in request.POST and request.POST['sisi3'] != '':
+            alas = int(request.POST['alas'])
+            tinggi = int(request.POST['tinggi'])
+            sisi1 = int(request.POST['sisi1'])
+            sisi2 = int(request.POST['sisi2'])
+            sisi3 = int(request.POST['sisi3'])
+            luas = luas_segitiga(alas, tinggi)
+            keliling = keliling_segitiga(sisi1, sisi2, sisi3)
+        else:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/segitiga?message=Please fill the form'))
+    else:
+        return render(request, 'views/bangun-datar/segitiga.html')
+    return render(request, 'views/bangunDatar/segitiga.html', {
+        'alas': alas,
+        'tinggi': tinggi,
+        'sisi1': sisi1,
+        'sisi2': sisi2,
+        'sisi3': sisi3,
+        'luas': luas,
+        'keliling': keliling
+    })
+
+def luas_segitiga(alas, tinggi):
+    return 0.5 * alas * tinggi
+def keliling_segitiga(sisi1, sisi2, sisi3):
+    return sisi1 + sisi2 + sisi3
+
 #* Bangun Ruang
 def bangunRuangIndex(request):
     return render(request, 'views/bangunRuang/index.html')
