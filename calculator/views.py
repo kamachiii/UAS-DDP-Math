@@ -14,12 +14,12 @@ def aritmatikaIndex(request):
         if operator == '+':
             hasil = int(num1) + int(num2)
         elif operator == '-':
-            hasil = int(num1) - int(num2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+            hasil = int(num1) - int(num2)
         elif operator == 'x':
-            hasil = int(num1) * int(num2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+            hasil = int(num1) * int(num2)
         elif operator == ':':
             hasil = int(num1) / int(num2)
-        return render(request, 'views/aritmatika/index.html', {"num1" : num1, "num2" : num2, "operator" : operator, "hasil" : hasil})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        return render(request, 'views/aritmatika/index.html', {"num1" : num1, "num2" : num2, "operator" : operator, "hasil" : hasil})
     return render(request, 'views/aritmatika/index.html')
 
 #* Bangun Datar
@@ -45,7 +45,7 @@ def bangunDatarPersegi(request):
 def luas_persegi(sisi):
     return sisi * sisi
 
-def keliling_persegi(sisi): 
+def keliling_persegi(sisi):
     return 4 * sisi
 
 def bangunDatarPersegiPanjang(request):
@@ -176,20 +176,27 @@ def keliling_trapesium(sisi1, sisi2, alas1, alas2):
 
 #* Bangun Ruang
 def bangunRuangIndex(request):
-    return render(request, 'views/bangunRuang/index.html')
+    return render(request, 'views/bangun-ruang/index.html')
 
 def bangunRuangKubus(request):
     if request.method == 'POST':
-        if 'sisi' in request.POST and request.POST['sisi'] != '':
-            sisi = int(request.POST['sisi'])
-            volume = volume_kubus(sisi)
-            luas_permukaan = luas_permukaan_kubus(sisi)
-            keliling = keliling_kubus(sisi)
+        if 'rumus' in request.POST and request.POST['rumus'] != '':
+            rumus = request.POST['rumus']
+            if rumus == '1':
+                sisi = int(request.POST['sisiVolume'])
+                hasil = volume_kubus(sisi)
+            elif rumus == '2':
+                sisi = int(request.POST['sisiLuasPermukaan'])
+                hasil = luas_permukaan_kubus(sisi)
+            elif rumus == '3':
+                sisi = int(request.POST['sisiKeliling'])
+                hasil = keliling_kubus(sisi)
+            return render(request, 'views/bangun-ruang/kubus.html', {"rumus" : rumus, "sisi" : sisi, "hasil" : hasil})
         else:
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/kubus?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/kubus.html')
-    return render(request, 'views/bangunRuang/kubus.html', {
+    return render(request, 'views/bangun-ruang/kubus.html', {
         'sisi': sisi,
         'volume': volume,
         'luas_permukaan': luas_permukaan,
@@ -208,7 +215,7 @@ def bangunRuangBalok(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/balok?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/balok.html')
-    return render(request, 'views/bangunRuang/balok.html', {
+    return render(request, 'views/bangun-ruang/balok.html', {
         'panjang': panjang,
         'lebar': lebar,
         'tinggi': tinggi,
@@ -230,7 +237,7 @@ def bangunRuangPrismaSegitiga(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/prisma/segitiga?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/prisma/prismaSegitiga.html')
-    return render(request, 'views/bangunRuang/prisma/prismaSegitiga.html', {
+    return render(request, 'views/bangun-ruang/prisma/prismaSegitiga.html', {
         'alas_segitiga': alas_segitiga,
         'tinggi_segitiga': tinggi_segitiga,
         'tinggi_prisma': tinggi_prisma,
@@ -238,7 +245,7 @@ def bangunRuangPrismaSegitiga(request):
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangPrismaSegiempat(request):
     if request.method == 'POST':
         if ' alas_segiempat' in request.POST and request.POST[' alas_segiempat'] != '' and 'tinggi_segiempat' in request.POST and request.POST['tinggi_segiempat'] != '' and 'tinggi_prisma' in request.POST and request.POST['tinggi_prisma'] != '':
@@ -252,7 +259,7 @@ def bangunRuangPrismaSegiempat(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/prisma/segiempat?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/prisma/prismaSegiempat.html')
-    return render(request, 'views/bangunRuang/prisma/prismaSegiempat.html', {
+    return render(request, 'views/bangun-ruang/prisma/prismaSegiempat.html', {
         'alas_segiempat': alas_segiempat,
         'tinggi_segiempat': tinggi_segiempat,
         'tinggi_prisma': tinggi_prisma,
@@ -260,7 +267,7 @@ def bangunRuangPrismaSegiempat(request):
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangPrismaSegilima(request):
     if request.method == 'POST':
         if ' alas_segilima' in request.POST and request.POST[' alas_segilima'] != '' and 'tinggi_segilima' in request.POST and request.POST['tinggi_segilima'] != '' and 'tinggi_prisma' in request.POST and request.POST['tinggi_prisma'] != '':
@@ -274,7 +281,7 @@ def bangunRuangPrismaSegilima(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/prisma/segilima?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html')
-    return render(request, 'views/bangunRuang/prisma/prismaSegilima.html', {
+    return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {
         'alas_segilima': alas_segilima,
         'tinggi_segilima': tinggi_segilima,
         'tinggi_prisma': tinggi_prisma,
@@ -282,7 +289,7 @@ def bangunRuangPrismaSegilima(request):
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangPrismaSegienam(request):
     if request.method == 'POST':
         if ' alas_segienam' in request.POST and request.POST[' alas_segienam'] != '' and 'tinggi_segienam' in request.POST and request.POST['tinggi_segienam'] != '' and 'tinggi_prisma' in request.POST and request.POST['tinggi_prisma'] != '':
@@ -296,7 +303,7 @@ def bangunRuangPrismaSegienam(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/prisma/segienam?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/prisma/prismaSegienam.html')
-    return render(request, 'views/bangunRuang/prisma/prismaSegienam.html', {
+    return render(request, 'views/bangun-ruang/prisma/prismaSegienam.html', {
         'alas_segienam': alas_segienam,
         'tinggi_segienam': tinggi_segienam,
         'tinggi_prisma': tinggi_prisma,
@@ -304,7 +311,7 @@ def bangunRuangPrismaSegienam(request):
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangTabung(request):
     if request.method == 'POST':
         if 'jari_jari' in request.POST and request.POST['jari_jari'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
@@ -317,7 +324,7 @@ def bangunRuangTabung(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/tabung?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/tabung.html')
-    return render(request, 'views/bangunRuang/tabung.html', {
+    return render(request, 'views/bangun-ruang/tabung.html', {
         'jari_jari': jari_jari,
         'tinggi': tinggi,
         'volume': volume,
@@ -337,14 +344,14 @@ def bangunRuangLimasSegitiga(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segitiga?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/limas/limasSegitiga.html')
-    return render(request, 'views/bangunRuang/limas/limasSegitiga.html', {
+    return render(request, 'views/bangun-ruang/limas/limasSegitiga.html', {
         'alas': alas,
         'tinggi': tinggi,
         'volume': volume,
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangLimasSegiempat(request):
     if request.method == 'POST':
         if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
@@ -357,14 +364,14 @@ def bangunRuangLimasSegiempat(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segiempat?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/limas/limasSegiempat.html')
-    return render(request, 'views/bangunRuang/limas/limasSegiempat.html', {
+    return render(request, 'views/bangun-ruang/limas/limasSegiempat.html', {
         'alas': alas,
         'tinggi': tinggi,
         'volume': volume,
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangLimasSegilima(request):
     if request.method == 'POST':
         if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
@@ -377,14 +384,14 @@ def bangunRuangLimasSegilima(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segilima?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/limas/limasSegilima.html')
-    return render(request, 'views/bangunRuang/limas/limasSegilima.html', {
+    return render(request, 'views/bangun-ruang/limas/limasSegilima.html', {
         'alas': alas,
         'tinggi': tinggi,
         'volume': volume,
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangLimasSegienam(request):
     if request.method == 'POST':
         if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
@@ -397,14 +404,14 @@ def bangunRuangLimasSegienam(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segiempat?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/limas/limasSegienam.html')
-    return render(request, 'views/bangunRuang/limas/limasSegienam.html', {
+    return render(request, 'views/bangun-ruang/limas/limasSegienam.html', {
         'alas': alas,
         'tinggi': tinggi,
         'volume': volume,
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangKerucut(request):
     if request.method == 'POST':
         if 'jari_jari' in request.POST and request.POST['jari_jari'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
@@ -417,14 +424,14 @@ def bangunRuangKerucut(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/kerucut?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/kerucut.html')
-    return render(request, 'views/bangunRuang/kerucut.html', {
+    return render(request, 'views/bangun-ruang/kerucut.html', {
         'jari_jari': jari_jari,
         'tinggi': tinggi,
         'volume': volume,
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-    
+
 def bangunRuangBola(request):
     if request.method == 'POST':
         if 'jari_jari' in request.POST and request.POST['jari_jari'] != '':
@@ -436,13 +443,13 @@ def bangunRuangBola(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/bola?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/bola.html')
-    return render(request, 'views/bangunRuang/bola.html', {
+    return render(request, 'views/bangun-ruang/bola.html', {
         'jari_jari': jari_jari,
         'volume': volume,
         'luas_permukaan': luas_permukaan,
         'keliling': keliling
     })
-      
+
 # 1 Rumus Bangun Ruang Kubus
 def volume_kubus(sisi):
     return sisi ** 3
@@ -550,7 +557,7 @@ def keliling_kerucut(jari_jari, tinggi):
 # 7 Rumus Bangun Ruang Bola
 def volume_bola(jari_jari):
     return (4/3) * math.pi * jari_jari ** 3
-def luas_permukaan_bola(jari_jari): 
+def luas_permukaan_bola(jari_jari):
     return 4 * math.pi * jari_jari ** 2
 def keliling_bola(jari_jari):
     return 2 * math.pi * jari_jari
