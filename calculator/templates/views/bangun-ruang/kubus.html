@@ -9,7 +9,6 @@
         <option value="" hidden selected>Pilih Rumus</option>
         <option value="1">Volume</option>
         <option value="2">Luas Permukaan</option>
-        <option value="3">Keliling</option>
     </select>
     <div id="rumusVolume" style="display: none;">
         *Tempat rumus volume
@@ -22,13 +21,6 @@
         *Tempat rumus luas permukaan
         <div class="form-floating">
             <input class="form-control" placeholder="rumus Luas Permukaan" id="input" name="sisiLuasPermukaan"></input>
-            <label for="input">Masukkan Sisi</label>
-        </div>
-    </div>
-    <div id="rumusKeliling" style="display: none;">
-        *Tempat rumus keliling
-        <div class="form-floating">
-            <input class="form-control" placeholder="rumus Keliling" id="input" name="sisiKeliling"></input>
             <label for="input">Masukkan Sisi</label>
         </div>
     </div>
@@ -45,8 +37,6 @@
                         Volume Kubus dengan sisi {{ sisi }} adalah {{ hasil }}
                     {% elif rumus == '2' %}
                         Luas Permukaan Kubus dengan sisi {{ sisi }} adalah {{ hasil }}
-                    {% elif rumus == '3' %}
-                        Keliling Kubus dengan sisi {{ sisi }} adalah {{ hasil }}
                     {% endif %}
             </h5>
         </div>
@@ -69,10 +59,6 @@
                 $("#rumusVolume").hide();
                 $("#rumusLuasPermukaan").show();
                 $("#rumusKeliling").hide();
-            } else if (rumus == 3) {
-                $("#rumusVolume").hide();
-                $("#rumusLuasPermukaan").hide();
-                $("#rumusKeliling").show();
             } else {
                 $("#rumusVolume").hide();
                 $("#rumusLuasPermukaan").hide();
