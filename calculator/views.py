@@ -44,7 +44,6 @@ def bangunDatarPersegi(request):
 
 def luas_persegi(sisi):
     return sisi * sisi
-
 def keliling_persegi(sisi):
     return 4 * sisi
 
@@ -204,13 +203,24 @@ def bangunRuangKubus(request):
     })
 def bangunRuangBalok(request):
     if request.method == 'POST':
-        if 'panjang' in request.POST and request.POST['panjang'] != '' and 'lebar' in request.POST and request.POST['lebar'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
-            panjang = int(request.POST['panjang'])
-            lebar = int(request.POST['lebar'])
-            tinggi = int(request.POST['tinggi'])
-            volume = volume_balok(panjang, lebar, tinggi)
-            luas_permukaan = luas_permukaan_balok(panjang, lebar, tinggi)
-            keliling = keliling_balok(panjang, lebar, tinggi)
+        if 'rumus' in request.POST and request.POST['rumus'] != '':
+            rumus = request.POST['rumus']
+            if rumus == '1':
+                panjang = int(request.POST['panjang'])
+                lebar = int(request.POST['lebar'])
+                tinggi = int(request.POST['tinggi'])
+                hasil = volume_balok(panjang, lebar, tinggi)
+            elif rumus == '2':
+                panjang = int(request.POST['panjang'])
+                lebar = int(request.POST['lebar'])
+                tinggi = int(request.POST['tinggi'])
+                hasil = luas_permukaan_balok(panjang, lebar, tinggi)
+            elif rumus == '3':
+                panjang = int(request.POST['panjang'])
+                lebar = int(request.POST['lebar'])
+                tinggi = int(request.POST['tinggi'])
+                hasil = keliling_balok(panjang, lebar, tinggi)
+            return render(request, 'views/bangun-ruang/balok.html', {"rumus" : rumus, "panjang" : panjang, "lebar" : lebar, "tinggi" : tinggi, "hasil" : hasil})
         else:
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/balok?message=Please fill the form'))
     else:
