@@ -34,18 +34,6 @@
         </div>
     </div>
     <br>
-    <div id="rumusLuasPermukaan" style="display: none;">
-        <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiSegilima"></input>
-            <label for="input">Masukkan Sisi Segilima</label>
-        </div>
-        <br>
-        <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="tinggiPrisma"></input>
-            <label for="input">Masukkan Tinggi Prisma</label>
-        </div>
-    </div>
-    <br>
     <button type="submit" class="btn btn-outline-primary">Hitung</button>
 </form>
 
@@ -83,9 +71,8 @@
                 $("#rumusVolumeLA").show();
                 $("#rumusLuasPermukaan").hide();
             } else if (rumus == 3) {
-                $("#rumusVolume").hide();
+                $("#rumusVolume").show();
                 $("#rumusVolumeLA").hide();
-                $("#rumusLuasPermukaan").show();
             } else {
                 $("#rumusVolume").hide();
                 $("#rumusVolumeLA").hide();
