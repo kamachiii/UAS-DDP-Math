@@ -4,11 +4,11 @@
 
 {% block content %}
 <form action="" method="post">
-    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required>
+    {% csrf_token %}
+    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" name="rumus" required>
         <option value="" hidden selected>Pilih Rumus</option>
         <option value="1">Volume</option>
         <option value="2">Luas Permukaan</option>
-        <option value="3">Keliling</option>
     </select>
     <div id="rumusVolume" style="display: none;">
         *Tempat rumus volume
@@ -24,17 +24,27 @@
             <label for="input">Masukkan Sisi</label>
         </div>
     </div>
-    <div id="rumusKeliling" style="display: none;">
-        *Tempat rumus keliling
-        <div class="form-floating">
-            <input class="form-control" placeholder="rumus Keliling" id="input" name="sisiKeliling"></input>
-            <label for="input">Masukkan Sisi</label>
-        </div>
-    </div>
     <br>
-    <button type="button" class="btn btn-outline-primary">Hitung</button>
+    <button type="submit" class="btn btn-outline-primary">Hitung</button>
 </form>
+
+{% if hasil %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 card shadow">
+        <div class="card-body">
+            <h5 class="card-title col-md-12 text-center fw-bold my-3">
+                    {% if rumus == '1' %}
+                        Volume Kubus dengan sisi {{ sisi }} adalah {{ hasil }}
+                    {% elif rumus == '2' %}
+                        Luas Permukaan Kubus dengan sisi {{ sisi }} adalah {{ hasil }}
+                    {% endif %}
+            </h5>
+        </div>
+    </div>  
+</div>
+{% endif %}
 {% endblock %}
+
 
 {% block script %}
 <script>
@@ -49,10 +59,6 @@
                 $("#rumusVolume").hide();
                 $("#rumusLuasPermukaan").show();
                 $("#rumusKeliling").hide();
-            } else if (rumus == 3) {
-                $("#rumusVolume").hide();
-                $("#rumusLuasPermukaan").hide();
-                $("#rumusKeliling").show();
             } else {
                 $("#rumusVolume").hide();
                 $("#rumusLuasPermukaan").hide();
