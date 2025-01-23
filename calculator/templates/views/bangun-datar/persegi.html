@@ -4,7 +4,8 @@
 
 {% block content %}
 <form action="" method="post">
-    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required>
+    {% csrf_token %}
+        <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required name="rumus">
         <option value="" hidden selected>Pilih Rumus</option>
         <option value="1">Luas</option>
         <option value="2">Keliling</option>
@@ -12,7 +13,7 @@
     <div id="rumusVolume" style="display: none;">
         *Tempat rumus Luas
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <input class="form-control" placeholder="rumus Volume" id="input" name="sisi"></input>
             <label for="input">Masukkan Sisi</label>
         </div>
     </div>
@@ -24,8 +25,15 @@
         </div>
     </div>
     <br>
-    <button type="button" class="btn btn-outline-primary">Hitung</button>
+    <button type="submit" class="btn btn-outline-primary">Hitung</button>
 </form>
+
+{% if luas %}
+luas = {{ luas}}
+sisi = {{ sisi}}
+Keliling = {{ keliling}}
+{% endif %}
+
 {% endblock %}
 
 {% block script %}

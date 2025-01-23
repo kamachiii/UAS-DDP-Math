@@ -24,7 +24,7 @@ def aritmatikaIndex(request):
 
 #* Bangun Datar
 def bangunDatarIndex(request):
-    return render(request, 'views/bangunDatar/index.html')
+    return render(request, 'views/bangun-datar/index.html')
 
 def bangunDatarPersegi(request):
     if request.method == 'POST':
@@ -36,7 +36,7 @@ def bangunDatarPersegi(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/persegi?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-datar/persegi.html')
-    return render(request, 'views/bangunDatar/persegi.html', {
+    return render(request, 'views/bangun-datar/persegi.html', {
         'sisi': sisi,
         'luas': luas,
         'keliling': keliling
@@ -59,7 +59,7 @@ def bangunDatarPersegiPanjang(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/persegi-panjang?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-datar/persegiPanjang.html')
-    return render(request, 'views/bangunDatar/persegiPanjang.html', {
+    return render(request, 'views/bangun-datar/persegiPanjang.html', {
         'panjang': panjang,
         'lebar': lebar,
         'luas': luas,
@@ -85,7 +85,7 @@ def bangunDatarSegitiga(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/segitiga?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-datar/segitiga.html')
-    return render(request, 'views/bangunDatar/segitiga.html', {
+    return render(request, 'views/bangun-datar/segitiga.html', {
         'alas': alas,
         'tinggi': tinggi,
         'sisi1': sisi1,
@@ -110,7 +110,7 @@ def bangunDatarLingkaran(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/lingkaran?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-datar/lingkaran.html')
-    return render(request, 'views/bangunDatar/lingkaran.html', {
+    return render(request, 'views/bangun-datar/lingkaran.html', {
         'jari_jari': jari_jari,
         'luas': luas,
         'keliling': keliling
@@ -122,25 +122,32 @@ def keliling_lingkaran(jari_jari):
 
 def bangunDatarJajarGenjang(request):
     if request.method == 'POST':
-        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '' and 'sisi1' in request.POST and request.POST['sisi1'] != '' and 'sisi2' in request.POST and request.POST['sisi2'] != '':
-            alas = int(request.POST['alas'])
-            tinggi = int(request.POST['tinggi'])
-            sisi1 = int(request.POST['sisi1'])
-            sisi2 = int(request.POST['sisi2'])
-            luas = luas_jajar_genjang(alas, tinggi)
-            keliling = keliling_jajar_genjang(sisi1, sisi2)
+        if 'rumus' in request.POST and request.POST['rumus'] != '':
+            rumus = request.POST['rumus']
+            if rumus == '1':
+                alas = int(request.POST['alas'])
+                tinggi = int(request.POST['tinggi'])
+                hasil = luas_jajar_genjang(alas, tinggi)
+                return render(request, 'views/bangun-datar/jajarGenjang.html', {
+                    'alas': alas,
+                    'tinggi': tinggi,
+                    'hasil': hasil
+                })
+            elif rumus == '2':
+                sisi1 = int(request.POST['sisi1'])
+                sisi2 = int(request.POST['sisi2'])
+                hasil = keliling_jajar_genjang(sisi1, sisi2)
+                return render(request, 'views/bangun-datar/jajarGenjang.html', {
+                    'sisi1': sisi1,
+                    'sisi2': sisi2,
+                    'hasil': hasil
+                })
+            else:
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/jajar-genjang?message=Please fill the form'))
         else:
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/jajar-genjang?message=Please fill the form'))
-    else:
-        return render(request, 'views/bangun-datar/jajarGenjang.html')
-    return render(request, 'views/bangunDatar/jajarGenjang.html', {
-        'alas': alas,
-        'tinggi': tinggi,
-        'sisi1': sisi1,
-        'sisi2': sisi2,
-        'luas': luas,
-        'keliling': keliling
-    })
+    return render(request, 'views/bangun-datar/jajarGenjang.html')
+
 def luas_jajar_genjang(alas, tinggi):
     return alas * tinggi
 def keliling_jajar_genjang(sisi1, sisi2):
@@ -160,7 +167,7 @@ def bangunDatarTrapesium(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-datar/trapesium?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-datar/trapesium.html')
-    return render(request, 'views/bangunDatar/trapesium.html', {
+    return render(request, 'views/bangun-datar/trapesium.html', {
         'alas1': alas1,
         'alas2': alas2,
         'tinggi': tinggi,
