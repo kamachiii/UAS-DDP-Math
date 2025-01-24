@@ -1,54 +1,73 @@
 {% extends "main.html" %}
-{% block title %}Kalkulator | Bangun Ruang | Balok{% endblock %}
-{% block contentHeader %}Balok{% endblock %}
+{% block title %}Kalkulator | Bangun Ruang | limas | Limas Segitiga{% endblock %}
+{% block contentHeader %}Limas Segitiga{% endblock %}
 
 {% block content %}
 <form action="" method="post">
-    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required>
+    {% csrf_token %}
+    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" name="rumus" required>
         <option value="" hidden selected>Pilih Rumus</option>
         <option value="1">Volume</option>
         <option value="2">Luas Permukaan</option>
-        <option value="3">Keliling</option>
     </select>
     <div id="rumusVolume" style="display: none;">
         *Tempat rumus volume
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
-            <label for="input">Masukkan Alas</label>
+            <input class="form-control" placeholder="Masukkan Alas" id="inputAlasVolume" name="alas" />
+            <label for="inputAlasVolume">Masukkan Alas</label>
         </div>
         <br>
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
-            <label for="input">Masukkan Tinggi</label>
+            <input class="form-control" placeholder="Masukkan Tinggi Alas" id="inputTinggiAlasVolume" name="tinggiAlas" />
+            <label for="inputTinggiAlasVolume">Masukkan Tinggi Alas</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input class="form-control" placeholder="Masukkan Tinggi Limas" id="inputTinggiLimasVolume" name="tinggiLimas" />
+            <label for="inputTinggiLimasVolume">Masukkan Tinggi Limas</label>
         </div>
     </div>
     <div id="rumusLuasPermukaan" style="display: none;">
         *Tempat rumus luas permukaan
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
-            <label for="input">Masukkan Alas</label>
+            <input class="form-control" placeholder="Masukkan Alas" id="inputAlasLuas" name="alas" />
+            <label for="inputAlasLuas">Masukkan Alas</label>
         </div>
         <br>
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
-            <label for="input">Masukkan Tinggi</label>
-        </div>
-    </div>
-    <div id="rumusKeliling" style="display: none;">
-        *Tempat rumus keliling
-        <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
-            <label for="input">Masukkan Alas</label>
+            <input class="form-control" placeholder="Masukkan Tinggi Alas" id="inputTinggiAlasLuas" name="tinggiAlas" />
+            <label for="inputTinggiAlasLuas">Masukkan Tinggi Alas</label>
         </div>
         <br>
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
-            <label for="input">Masukkan Tinggi</label>
+            <input class="form-control" placeholder="Masukkan Tinggi Limas" id="inputTinggiLimasLuas" name="tinggiLimas" />
+            <label for="inputTinggiLimasLuas">Masukkan Tinggi Limas</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input class="form-control" placeholder="Masukkan Sisi Miring" id="inputSisiMiring" name="sisiMiring" />
+            <label for="inputSisiMiring">Masukkan Sisi Miring</label>
         </div>
     </div>
     <br>
-    <button type="button" class="btn btn-outline-primary">Hitung</button>
+    <button type="submit" class="btn btn-outline-primary">Hitung</button>
 </form>
+
+{% if hasil %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 card shadow">
+        <div class="card-body">
+            <h5 class="card-title col-md-12 text-center fw-bold my-3">
+                    {% if rumus == '1' %}
+                        Volume Limas Segitiga dengan alas {{ alas }}, tinggi alas {{ tinggiAlas }}, dan tinggi limas {{ tinggiLimas }} adalah {{ hasil }}
+                    {% elif rumus == '2' %}
+                        Luas Permukaan Limas Segitiga dengan alas {{ alas }}, tinggi alas {{ tinggiAlas }}, tinggi limas {{ tinggiLimas }}, dan sisi miring {{ sisiMiring }} adalah {{ hasil }}
+                    {% endif %}
+            </h5>
+        </div>
+    </div>  
+</div>
+{% endif %}
 {% endblock %}
 
 {% block script %}
@@ -59,19 +78,12 @@
             if (rumus == 1) {
                 $("#rumusVolume").show();
                 $("#rumusLuasPermukaan").hide();
-                $("#rumusKeliling").hide();
             } else if (rumus == 2) {
                 $("#rumusVolume").hide();
                 $("#rumusLuasPermukaan").show();
-                $("#rumusKeliling").hide();
-            } else if (rumus == 3) {
-                $("#rumusVolume").hide();
-                $("#rumusLuasPermukaan").hide();
-                $("#rumusKeliling").show();
             } else {
                 $("#rumusVolume").hide();
                 $("#rumusLuasPermukaan").hide();
-                $("#rumusKeliling").hide();
             }
         });
     });
