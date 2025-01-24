@@ -275,34 +275,34 @@ def bangunRuangPrismaSegiempat(request):
         'keliling': keliling
     })
 
-def bangunRuangPrismaSegilima(request):
-    if request.method == 'POST':
-        if 'rumus' in request.POST and request.POST['rumus'] != '':
-            rumus = request.POST['rumus']
-            luasAlas = int(request.POST['luasAlas'])
-            sisi_segilima = int(request.POST['sisiSegilima'])
-            tinggi_prisma = int(request.POST['tinggiPrisma'])
-            if rumus == '1':
-                hasil = volume_prisma_segilima(sisi_segilima, tinggi_prisma)
-                return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {"rumus" : rumus, "sisi_segilima":, "hasil" : hasil})
-            elif rumus == '2':
-                hasil = volume_prisma_segilima_LA(luasAlas, tinggi_prisma)
-                return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {"rumus" : rumus, "sisiSegilima" : sisi_segilima, "tinggiPrisma" : tinggi_prisma, "hasil" : hasil})
-            elif rumus == '3':
-                hasil = luas_permukaan_prisma_segilima(sisi_segilima, tinggi_prisma)
-                return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {"rumus" : rumus, "sisiSegilima" : sisi_segilima, "tinggiPrisma" : tinggi_prisma, "hasil" : hasil})
-        else:
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/prisma/segilima?message=Please fill the form'))
-    else:
-        return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html')
-    return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {
-        'alas_segilima': alas_segilima,
-        'tinggi_segilima': tinggi_segilima,
-        'tinggi_prisma': tinggi_prisma,
-        'volume': volume,
-        'luas_permukaan': luas_permukaan,
-        'keliling': keliling
-    })
+# def bangunRuangPrismaSegilima(request):
+#     if request.method == 'POST':
+#         if 'rumus' in request.POST and request.POST['rumus'] != '':
+#             rumus = request.POST['rumus']
+#             luasAlas = int(request.POST['luasAlas'])
+#             sisi_segilima = int(request.POST['sisiSegilima'])
+#             tinggi_prisma = int(request.POST['tinggiPrisma'])
+#             if rumus == '1':
+#                 hasil = volume_prisma_segilima(sisi_segilima, tinggi_prisma)
+#                 return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {"rumus" : rumus, "sisi_segilima":, "hasil" : hasil})
+#             elif rumus == '2':
+#                 hasil = volume_prisma_segilima_LA(luasAlas, tinggi_prisma)
+#                 return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {"rumus" : rumus, "sisiSegilima" : sisi_segilima, "tinggiPrisma" : tinggi_prisma, "hasil" : hasil})
+#             elif rumus == '3':
+#                 hasil = luas_permukaan_prisma_segilima(sisi_segilima, tinggi_prisma)
+#                 return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {"rumus" : rumus, "sisiSegilima" : sisi_segilima, "tinggiPrisma" : tinggi_prisma, "hasil" : hasil})
+#         else:
+#             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/prisma/segilima?message=Please fill the form'))
+#     else:
+#         return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html')
+#     return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {
+#         'alas_segilima': alas_segilima,
+#         'tinggi_segilima': tinggi_segilima,
+#         'tinggi_prisma': tinggi_prisma,
+#         'volume': volume,
+#         'luas_permukaan': luas_permukaan,
+#         'keliling': keliling
+#     })
 
 def bangunRuangPrismaSegienam(request):
     if request.method == 'POST':
