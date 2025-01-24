@@ -4,7 +4,8 @@
 
 {% block content %}
 <form action="" method="post">
-    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required>
+    {% csrf_token %}
+    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required name="rumus">
         <option value="" hidden selected>Pilih Rumus</option>
         <option value="1">Luas</option>
         <option value="2">Keliling</option>
@@ -12,31 +13,42 @@
     <div id="rumusVolume" style="display: none;">
         *Tempat rumus Luas
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <input class="form-control" placeholder="rumus Volume" id="input" name="alas"></input>
             <label for="input">Masukkan Alas</label>
         </div>
         <br>
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Volume" id="input" name="sisiVolume"></input>
+            <input class="form-control" placeholder="rumus Volume" id="input" name="tinggi"></input>
             <label for="input">Masukkan Tinggi</label>
         </div>
+        <br>
     </div>
-    <br>
     <div id="rumusLuasPermukaan" style="display: none;">
         *Tempat rumus Keliling
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Luas Permukaan" id="input" name="sisiLuasPermukaan"></input>
+            <input class="form-control" placeholder="rumus Luas Permukaan" id="input" name="sisi1"></input>
             <label for="input">Masukkan Sisi 1</label>
         </div>
         <br>
         <div class="form-floating">
-            <input class="form-control" placeholder="rumus Luas Permukaan" id="input" name="sisiLuasPermukaan"></input>
+            <input class="form-control" placeholder="rumus Luas Permukaan" id="input" name="sisi2"></input>
             <label for="input">Masukkan Sisi 2</label>
         </div>
     </div>
     <br>
-    <button type="button" class="btn btn-outline-primary">Hitung</button>
+    <button type="submit" class="btn btn-outline-primary">Hitung</button>
 </form>
+
+{% if alas1 %}
+alas1 = {{ alas1}}
+alas2 = {{ alas2}}
+tinggi = {{ tinggi}}
+sisi1 = {{ sisi1}}
+sisi2 = {{ sisi2}}
+luas = {{ luas}}
+keliling = {{ keliling}}
+{% endif %}
+
 {% endblock %}
 
 {% block script %}
