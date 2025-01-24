@@ -4,7 +4,7 @@
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
     <i class="fa-solid fa-calculator fa-lg ps-4"></i>
-    <span class="brand-text font-weight-light ps-1">Calculary</span>
+    <span class="brand-text ps-1">SOLVELT</span>
   </a>
 
   <!-- Sidebar -->
@@ -221,6 +221,12 @@
               <a href="{% url 'konversi-berat' %}" class="nav-link {% if request.path == '/konversi/berat/' %}active{% endif %}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Berat</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'konversi-biner' %}" class="nav-link {% if request.path == '/konversi/biner/' %}active{% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Biner</p>
               </a>
             </li>
           </ul>

@@ -4,7 +4,8 @@
 
 {% block content %}
 <form action="" method="post">
-    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required>
+    {% csrf_token %}
+    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required name="rumus">
         <option value="" hidden selected>Pilih Rumus</option>
         <option value="1">Luas</option>
         <option value="2">Keliling</option>
@@ -24,7 +25,7 @@
         </div>
     </div>
     <br>
-    <button type="button" class="btn btn-outline-primary">Hitung</button>
+    <button type="submit" class="btn btn-outline-primary">Hitung</button>
 </form>
 {% endblock %}
 

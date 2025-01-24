@@ -61,6 +61,7 @@ urlpatterns = [
         path('suhu', konversiSuhu, name="konversi-suhu"),
         path('berat', konversiBerat, name="konversi-berat"),
         path('panjang', konversiPanjang, name="konversi-panjang"),
+        path('biner', konversiBiner, name="konversi-biner")
     ])),
 
     #? Auth
