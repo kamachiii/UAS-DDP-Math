@@ -3,7 +3,58 @@
 {% block contentHeader %}Dashboard{% endblock %}
 
 {% block content %}
+<div class="container">
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Selamat Datang di Kalkulator</h1>
+        <p class="lead">Kalkulator ini dapat membantu Anda dalam melakukan perhitungan matematika.</p>
+        <hr class="my-4">
+        <p>Pilih fitur yang ingin Anda gunakan.</p>
+    </div>
+    <!-- Features Section -->
+    <div class="row text-center">
+        <div class="col-md-3">
+            <div class="card feature-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Aritmatika</h5>
+                    <p class="card-text">Hitung penjumlahan, pengurangan, dan lainnya.</p>
+                    <a href="{% url "aritmatika-index" %}" class="btn btn-primary">Coba Sekarang</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card feature-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Bangun Datar</h5>
+                    <p class="card-text">Hitung luas dan keliling berbagai bentuk.</p>
+                    <a href="{% url "bangunDatar-persegi" %}" class="btn btn-primary">Coba Sekarang</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card feature-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Bangun Ruang</h5>
+                    <p class="card-text">Hitung volume dan luas permukaan.</p>
+                    <a href="{% url "bangunRuang-kubus" %}" class="btn btn-primary">Coba Sekarang</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card feature-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Konversi</h5>
+                    <p class="card-text">Konversi satuan panjang, berat, dan lainnya.</p>
+                    <a href="{% url "konversi-suhu" %}" class="btn btn-primary">Coba Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-Hello World!
+    <!-- Call to Action -->
+    <div class="text-center mt-5">
+        <a href="{% url "aritmatika-index" %}" class="btn btn-success btn-lg">Mulai Perhitungan Sekarang</a>
+    </div>
+</div>
 
 {% endblock %}

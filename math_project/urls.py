@@ -44,7 +44,7 @@ urlpatterns = [
         path('Balok', bangunRuangBalok, name="bangunRuang-balok"),
         path('Prisma Segitiga', bangunRuangPrismaSegitiga, name="bangunRuang-prisma-segitiga"),
         path('Prisma Segiempat', bangunRuangPrismaSegiempat, name="bangunRuang-prisma-segiempat"),
-        path('Prisma Segilima', bangunRuangPrismaSegilima, name="bangunRuang-prisma-segilima"),
+        # path('Prisma Segilima', bangunRuangPrismaSegilima, name="bangunRuang-prisma-segilima"),
         path('Prisma Segienam', bangunRuangPrismaSegienam, name="bangunRuang-prisma-segienam"),
         path('Tabung', bangunRuangTabung, name="bangunRuang-tabung"),
         path('Limas Segitiga', bangunRuangLimasSegitiga, name="bangunRuang-limas-segitiga"),
@@ -61,6 +61,7 @@ urlpatterns = [
         path('suhu', konversiSuhu, name="konversi-suhu"),
         path('berat', konversiBerat, name="konversi-berat"),
         path('panjang', konversiPanjang, name="konversi-panjang"),
+        path('biner', konversiBiner, name="konversi-biner")
     ])),
 
     #? Auth

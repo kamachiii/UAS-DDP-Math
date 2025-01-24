@@ -284,38 +284,6 @@ def luas_permukaan_prisma_segiempat(panjang, lebar, tinggi_prisma):
 # End of Rumus Bangun Ruang Prisma segiempat
 
 # 3.3 Rumus Bangun Ruang Prisma Segilima
-def bangunRuangPrismaSegilima(request):
-    if request.method == 'POST':
-        if 'rumus' in request.POST and request.POST['rumus'] != '':
-            rumus = request.POST['rumus']
-            luasAlas = int(request.POST['luasAlas'])
-            sisi_segilima = int(request.POST['sisiSegilima'])
-            tinggi_prisma = int(request.POST['tinggiPrisma'])
-            if rumus == '1':
-                hasil = volume_prisma_segilima(sisi_segilima, tinggi_prisma)
-            elif rumus == '2':
-                hasil = volume_prisma_segilima_LA(luasAlas, tinggi_prisma)
-            elif rumus == '3':
-                hasil = luas_permukaan_prisma_segilima(sisi_segilima, tinggi_prisma)
-                return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html', {"rumus" : rumus, "sisiSegilima" : sisi_segilima, "tinggiPrisma" : tinggi_prisma, "hasil" : round(hasil,2)})
-        else:
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/prisma/segilima?message=Please fill the form'))
-    else:
-        return render(request, 'views/bangun-ruang/prisma/prismaSegilima.html')
-def volume_prisma_segilima(sisi, tinggi_prisma):
-    apotema = sisi / (2 * math.tan(math.pi / 5))
-    luas_alas = (5 / 2) * sisi * apotema
-    volume = luas_alas * tinggi_prisma
-    return volume
-def volume_prisma_segilima_LA(luasAlas, tinggi_prisma):
-    return luasAlas * tinggi_prisma
-def luas_permukaan_prisma_segilima(sisi, tinggi_prisma):
-    apotema = sisi / (2 * math.tan(math.pi / 5))
-    luas_alas = (5 / 2) * sisi * apotema
-    keliling_alas = 5 * sisi
-    luas_selimut = keliling_alas * tinggi_prisma
-    luas_permukaan = 2 * luas_alas + luas_selimut
-    return luas_permukaan
 # End of Rumus Bangun Ruang Prisma segilima
 
 # 3.4 Rumus Bangun Ruang Prisma Segienam
@@ -369,32 +337,27 @@ def luas_permukaan_tabung(jari_jari, tinggi):
 # 5.1 Rumus Bangun Ruang Limas Segitiga
 def bangunRuangLimasSegitiga(request):
     if request.method == 'POST':
-        if 'rumus' in request.POST and request.POST['rumus'] != '':
-            rumus = request.POST['rumus']
-            if rumus == '1':
-                alas = int(request.POST['alas'])
-                tinggi_alas = int(request.POST['tinggiAlas'])
-                tinggi_limas = int(request.POST['tinggiLimas'])
-                hasil = volume_limas_segitiga(alas, tinggi_alas, tinggi_limas)
-            elif rumus == '2':
-                alas = int(request.POST['alas'])
-                tinggi_alas = int(request.POST['tinggiAlas'])
-                tinggi_limas = int(request.POST['tinggiLimas'])
-                sisiMiring = int(request.POST['sisiMiring'])
-                hasil = luas_permukaan_limas_segitiga(alas, tinggi_alas, sisiMiring, tinggi_limas)
-            return render(request, 'views/bangun-ruang/limas/limasSegitiga.html', {"rumus" : rumus, "alas" : alas, "tinggiAlas" : tinggi_alas, "tinggiLimas" : tinggi_limas, "sisiMiring" : sisiMiring, "hasil" : round(hasil,2)})
+        if 'alas' in request.POST and request.POST['alas'] != '' and 'tinggi' in request.POST and request.POST['tinggi'] != '':
+            alas = int(request.POST['alas'])
+            tinggi = int(request.POST['tinggi'])
+            volume = volume_limas_segitiga(alas, tinggi)
+            luas_permukaan = luas_permukaan_limas_segitiga(alas, tinggi)
         else:
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/bangun-ruang/limas/segitiga?message=Please fill the form'))
     else:
         return render(request, 'views/bangun-ruang/limas/limasSegitiga.html')
-
-def volume_limas_segitiga(alas, tinggi_alas, tinggi_limas):
-    return (1/3) * (1/2) * alas * tinggi_alas * tinggi_limas
-
+    return render(request, 'views/bangun-ruang/limas/limasSegitiga.html', {
+        'alas': alas,
+        'tinggi': tinggi,
+        'volume': volume,
+        'luas_permukaan': luas_permukaan,
+    })
 def luas_permukaan_limas_segitiga(alas, tinggi_alas, sisi_miring, tinggi_limas):
     luas_alas = (1/2) * alas * tinggi_alas
     luas_selimut = 3 * (1/2) * sisi_miring * tinggi_limas
     return luas_alas + luas_selimut
+def volume_limas_segitiga(alas, tinggi_alas, tinggi_limas):
+    return (1/3) * (1/2) * alas * tinggi_alas * tinggi_limas
 # End of Rumus Bangun Ruang Limas Segitiga
 
 # 5.2 Rumus Bangun Ruang Limas Segiempat

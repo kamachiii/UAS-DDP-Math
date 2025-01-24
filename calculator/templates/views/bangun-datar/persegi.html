@@ -5,7 +5,7 @@
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-        <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required name="rumus">
+    <select id="pilihRumus" class="form-select mb-3" aria-label="Default select example" required name="rumus">
         <option value="" hidden selected>Pilih Rumus</option>
         <option value="1">Luas</option>
         <option value="2">Keliling</option>
@@ -26,23 +26,8 @@
     </div>
     <br>
     <button type="submit" class="btn btn-outline-primary">Hitung</button>
+    <button type="submit" class="btn btn-outline-primary">Hitung</button>
 </form>
-
-{% if luas %}
-<div class="row justify-content-center mt-5">
-    <div class="col-md-6 card shadow">
-        <div class="card-body">
-            <h5 class="card-title col-md-12 text-center fw-bold my-3">
-                luas = {{ luas}}
-                sisi = {{ sisi}}
-                Keliling = {{ keliling}}
-            </h5>
-        </div>
-    </div>  
-</div>
-
-{% endif %}
-
 {% endblock %}
 
 {% block script %}
